@@ -9,10 +9,39 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
 
-  const services = [
-    { name: "Insurance", slug: "insurance" },
-    { name: "Compliance", slug: "compliance" },
-    { name: "Business Formation", slug: "business-formation" },
+  const serviceCategories = [
+    {
+      category: "Insurance",
+      services: [
+        { name: "Vehicle Insurance", slug: "vehicle-insurance" },
+        { name: "Truck General Liability", slug: "truck-general-liability" },
+        { name: "Professional Liability", slug: "professional-liability" },
+        { name: "Commercial Auto", slug: "commercial-auto" },
+      ],
+    },
+    {
+      category: "Authority & Compliance",
+      services: [
+        { name: "USDOT Number", slug: "usdot-number" },
+        { name: "MC Number", slug: "mc-number" },
+        { name: "BOC-3 Filing", slug: "boc3-filing" },
+        { name: "UCR Registration", slug: "ucr-registration" },
+      ],
+    },
+    {
+      category: "Business Formation",
+      services: [
+        { name: "LLC Formation", slug: "llc-formation" },
+        { name: "EIN Tax ID", slug: "ein-tax-id" },
+        { name: "BOI Report", slug: "boi-report" },
+      ],
+    },
+    {
+      category: "Tax Services",
+      services: [
+        { name: "Tax Return", slug: "tax-return" },
+      ],
+    },
   ];
 
   return (
@@ -98,41 +127,41 @@ export default function Navbar() {
 
               {/* Services Dropdown */}
               <div
-                className="relative"
-                onMouseEnter={() => setIsServicesOpen(true)}
-                onMouseLeave={() => setIsServicesOpen(false)}
+                className="group relative"
               >
-                <button className="flex items-center gap-1 text-primary font-semibold hover:text-secondary transition-colors">
+                <button className="flex items-center gap-1 text-primary font-semibold hover:text-secondary transition-colors py-8">
                   <span>Services</span>
                   <ChevronDown
-                    className={`w-4 h-4 transition-transform ${
-                      isServicesOpen ? "rotate-180" : ""
-                    }`}
+                    className="w-4 h-4 transition-transform group-hover:rotate-180"
                   />
                 </button>
 
-                {isServicesOpen && (
-                  <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl py-2 border">
-                    {services.map((service) => (
-                      <Link
-                        key={service.slug}
-                        href={`/services/${service.slug}`}
-                        className="block px-4 py-2 text-primary hover:bg-accent hover:text-secondary transition-colors"
-                        onClick={() => setIsServicesOpen(false)}
-                      >
-                        {service.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
+                <div className="absolute top-full left-0 -mt-2 w-72 bg-white rounded-lg shadow-xl py-2 border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 max-h-96 overflow-y-auto">
+                  {serviceCategories.map((category) => (
+                    <div key={category.category} className="mb-2">
+                      <div className="px-4 py-1.5 text-xs font-bold text-gray-400 uppercase tracking-wider">
+                        {category.category}
+                      </div>
+                      {category.services.map((service) => (
+                        <Link
+                          key={service.slug}
+                          href={`/services/${service.slug}`}
+                          className="block px-4 py-2 text-primary hover:bg-accent hover:text-secondary transition-colors"
+                        >
+                          {service.name}
+                        </Link>
+                      ))}
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              <Link
+              {/* <Link
                 href="/referral"
                 className="text-primary font-semibold hover:text-secondary transition-colors"
               >
                 Referral
-              </Link>
+              </Link> */}
 
               <Link
                 href="/contact"
@@ -197,19 +226,28 @@ export default function Navbar() {
                 </button>
 
                 {isMobileServicesOpen && (
-                  <div className="pl-4 mt-2 space-y-2 border-l-2 border-secondary">
-                    {services.map((service) => (
-                      <Link
-                        key={service.slug}
-                        href={`/services/${service.slug}`}
-                        className="block text-primary hover:text-secondary transition-colors py-2"
-                        onClick={() => {
-                          setIsMobileMenuOpen(false);
-                          setIsMobileServicesOpen(false);
-                        }}
-                      >
-                        {service.name}
-                      </Link>
+                  <div className="pl-4 mt-2 space-y-3 border-l-2 border-secondary">
+                    {serviceCategories.map((category) => (
+                      <div key={category.category}>
+                        <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
+                          {category.category}
+                        </div>
+                        <div className="space-y-1">
+                          {category.services.map((service) => (
+                            <Link
+                              key={service.slug}
+                              href={`/services/${service.slug}`}
+                              className="block text-primary hover:text-secondary transition-colors py-1.5"
+                              onClick={() => {
+                                setIsMobileMenuOpen(false);
+                                setIsMobileServicesOpen(false);
+                              }}
+                            >
+                              {service.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
                     ))}
                   </div>
                 )}
