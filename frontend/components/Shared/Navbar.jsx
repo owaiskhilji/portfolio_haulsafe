@@ -1,19 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Phone, MapPin, Mail, ChevronDown, Menu, X } from "lucide-react";
+import { Mail, ChevronDown, Menu, X } from "lucide-react";
+import { servicesData } from "@/constants/servicesData";
 
 export default function Navbar() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const servicesRef = useRef(null);
 
-  const services = [
-    { name: "Insurance", slug: "insurance" },
-    { name: "Compliance", slug: "compliance" },
-    { name: "Business Formation", slug: "business-formation" },
-  ];
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (servicesRef.current && !servicesRef.current.contains(event.target)) {
+        setIsServicesOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Group services by category
+  const groupedServices = servicesData.reduce((acc, service) => {
+    if (!acc[service.category]) {
+      acc[service.category] = [];
+    }
+    acc[service.category].push(service);
+    return acc;
+  }, {});
 
   return (
     <>
@@ -22,19 +39,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 h-full">
           <div className="flex items-center justify-between h-full text-white text-xs">
             <div className="flex items-center gap-4">
-              {/* Mobile: Icons only */}
-              <Link
-                href="tel:+923100000000"
-                className="md:hidden flex items-center justify-center w-8 h-8 hover:text-secondary transition-colors"
-              >
-                <Phone className="w-4 h-4" />
-              </Link>
-              <Link
-                href="#"
-                className="md:hidden flex items-center justify-center w-8 h-8 hover:text-secondary transition-colors"
-              >
-                <MapPin className="w-4 h-4" />
-              </Link>
+              {/* Mobile: Email icon only */}
               <Link
                 href="mailto:haulsafeinsurance@gmail.com"
                 className="md:hidden flex items-center justify-center w-8 h-8 hover:text-secondary transition-colors"
@@ -42,21 +47,10 @@ export default function Navbar() {
                 <Mail className="w-4 h-4" />
               </Link>
 
-              {/* Desktop: Full info */}
-              <Link
-                href="tel:+923100000000"
-                className="hidden md:flex items-center gap-2 hover:text-secondary transition-colors"
-              >
-                <Phone className="w-3 h-3" />
-                <span>+923100000000</span>
-              </Link>
-              <div className="hidden md:flex items-center gap-2">
-                <MapPin className="w-3 h-3" />
-                <span>abc home city country</span>
-              </div>
+              {/* Desktop: Email only */}
               <Link
                 href="mailto:haulsafeinsurance@gmail.com"
-                className="hidden md:flex items-center gap-2 hover:text-secondary transition-colors"
+                className="flex items-center gap-2 hover:text-secondary transition-colors"
               >
                 <Mail className="w-3 h-3" />
                 <span>haulsafeinsurance@gmail.com</span>
@@ -96,13 +90,12 @@ export default function Navbar() {
                 Home
               </Link>
 
-              {/* Services Dropdown */}
-              <div
-                className="relative"
-                onMouseEnter={() => setIsServicesOpen(true)}
-                onMouseLeave={() => setIsServicesOpen(false)}
-              >
-                <button className="flex items-center gap-1 text-primary font-semibold hover:text-secondary transition-colors">
+              {/* Services Dropdown - Click to Toggle */}
+              <div className="relative" ref={servicesRef}>
+                <button
+                  className="flex items-center gap-1 text-primary font-semibold hover:text-secondary transition-colors"
+                  onClick={() => setIsServicesOpen(!isServicesOpen)}
+                >
                   <span>Services</span>
                   <ChevronDown
                     className={`w-4 h-4 transition-transform ${
@@ -112,27 +105,27 @@ export default function Navbar() {
                 </button>
 
                 {isServicesOpen && (
-                  <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl py-2 border">
-                    {services.map((service) => (
-                      <Link
-                        key={service.slug}
-                        href={`/services/${service.slug}`}
-                        className="block px-4 py-2 text-primary hover:bg-accent hover:text-secondary transition-colors"
-                        onClick={() => setIsServicesOpen(false)}
-                      >
-                        {service.name}
-                      </Link>
+                  <div className="absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-xl py-2 border max-h-[70vh] overflow-y-auto z-50">
+                    {Object.entries(groupedServices).map(([category, items]) => (
+                      <div key={category} className="mb-2">
+                        <div className="px-4 py-2 text-xs font-bold text-secondary uppercase tracking-wide bg-accent">
+                          {category}
+                        </div>
+                        {items.map((service) => (
+                          <Link
+                            key={service.slug}
+                            href={`/services/${service.slug}`}
+                            className="block px-4 py-2 text-sm text-primary hover:bg-accent hover:text-secondary transition-colors"
+                            onClick={() => setIsServicesOpen(false)}
+                          >
+                            {service.title}
+                          </Link>
+                        ))}
+                      </div>
                     ))}
                   </div>
                 )}
               </div>
-
-              <Link
-                href="/referral"
-                className="text-primary font-semibold hover:text-secondary transition-colors"
-              >
-                Referral
-              </Link>
 
               <Link
                 href="/contact"
@@ -197,31 +190,30 @@ export default function Navbar() {
                 </button>
 
                 {isMobileServicesOpen && (
-                  <div className="pl-4 mt-2 space-y-2 border-l-2 border-secondary">
-                    {services.map((service) => (
-                      <Link
-                        key={service.slug}
-                        href={`/services/${service.slug}`}
-                        className="block text-primary hover:text-secondary transition-colors py-2"
-                        onClick={() => {
-                          setIsMobileMenuOpen(false);
-                          setIsMobileServicesOpen(false);
-                        }}
-                      >
-                        {service.name}
-                      </Link>
+                  <div className="pl-4 mt-2 space-y-3 border-l-2 border-secondary max-h-96 overflow-y-auto">
+                    {Object.entries(groupedServices).map(([category, items]) => (
+                      <div key={category}>
+                        <div className="text-xs font-bold text-secondary uppercase tracking-wide py-1">
+                          {category}
+                        </div>
+                        {items.map((service) => (
+                          <Link
+                            key={service.slug}
+                            href={`/services/${service.slug}`}
+                            className="block text-primary hover:text-secondary transition-colors py-1.5 text-sm"
+                            onClick={() => {
+                              setIsMobileMenuOpen(false);
+                              setIsMobileServicesOpen(false);
+                            }}
+                          >
+                            {service.title}
+                          </Link>
+                        ))}
+                      </div>
                     ))}
                   </div>
                 )}
               </div>
-
-              <Link
-                href="/referral"
-                className="block text-primary font-semibold hover:text-secondary transition-colors py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Referral
-              </Link>
 
               <Link
                 href="/contact"

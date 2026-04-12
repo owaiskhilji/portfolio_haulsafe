@@ -9,6 +9,7 @@ const inter = Inter({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://haulsafe-insurance.com"),
   title: "HaulSafe Insurance - Premium Trucking Insurance & FMCSA Compliance",
   description: "US-based trucking insurance with 50% upfront payment and 7-day complete legal setup. Expert FMCSA compliance services.",
   icons: {

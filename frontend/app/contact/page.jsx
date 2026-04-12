@@ -4,9 +4,10 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Phone, Mail, Clock, Send, MapPin } from "lucide-react";
+import { Mail, Clock, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import SuccessModal from "@/components/Shared/SuccessModal";
+import { servicesData } from "@/constants/servicesData";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Full Name is required"),
@@ -67,18 +68,6 @@ export default function Contact() {
       link: "mailto:haulsafeinsurance@gmail.com",
     },
     {
-      icon: <Phone className="w-6 h-6" />,
-      title: "Phone",
-      details: "+923100000000",
-      link: "tel:+923100000000",
-    },
-    {
-      icon: <MapPin className="w-6 h-6" />,
-      title: "Address",
-      details: "abc",
-      link: null,
-    },
-    {
       icon: <Clock className="w-6 h-6" />,
       title: "Business Hours",
       details: "Mon-Fri, 9AM-6PM EST",
@@ -88,12 +77,10 @@ export default function Contact() {
 
   const subjects = [
     { value: "", label: "Select a Subject" },
-    { value: "insurance-quote", label: "Insurance Quote" },
-    { value: "fmcsa-compliance", label: "FMCSA Compliance" },
-    { value: "business-formation", label: "Business Formation / LLC" },
-    { value: "existing-policy", label: "Existing Policy Inquiry" },
-    { value: "claims", label: "Claims Support" },
-    { value: "referral", label: "Referral Program" },
+    ...servicesData.map((service) => ({
+      value: service.slug,
+      label: service.title,
+    })),
     { value: "other", label: "Other" },
   ];
 

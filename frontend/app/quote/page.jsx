@@ -7,6 +7,7 @@ import * as z from "zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, User, Building2, CheckCircle, ChevronRight, ChevronLeft } from "lucide-react";
 import SuccessModal from "@/components/Shared/SuccessModal";
+import { servicesData } from "@/constants/servicesData";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Full Legal Name is required"),
@@ -22,16 +23,7 @@ const formSchema = z.object({
   message: z.string().optional(),
 });
 
-const services = [
-  "Trucking Insurance",
-  "USDOT Registration",
-  "MC Authority",
-  "BOC-3 Filing",
-  "UCR Registration",
-  "EIN / Tax ID",
-  "LLC Formation",
-  "BOI Report",
-];
+const services = servicesData.map((service) => service.title);
 
 export default function Quote() {
   const [currentStep, setCurrentStep] = useState(1);
