@@ -71,14 +71,14 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             {/* Logo Section */}
-            <Link href="/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center">
               <img
                 src="/logo.png"
                 alt="HaulSafe Logo"
-                className="h-20 w-20 object-contain"
+                className="h-32 w-32 md:w-44 md:h-44 object-contain relative right-6 md:right-0 top-2 md:top-2"
               />
-              <div className="flex flex-col justify-center">
-                <span className="text-xl font-bold text-primary leading-tight">
+              <div className="flex flex-col justify-center relative right-14 md:right-10">
+                <span className="text-lg md:text-xl font-bold text-primary leading-tight">
                   HAULSAFE INSURANCE
                 </span>
                 <span className="text-xs text-[#D4AF37]">
