@@ -1,10 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Phone, Mail, Clock, Send, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
+import SuccessModal from "@/components/Shared/SuccessModal";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Full Name is required"),
@@ -40,6 +42,8 @@ const slideInRight = {
 };
 
 export default function Contact() {
+  const [showModal, setShowModal] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -51,7 +55,7 @@ export default function Contact() {
 
   const onSubmit = async (data) => {
     console.log("Form submitted:", data);
-    alert("Thank you! Your message has been sent. We'll get back to you soon.");
+    setShowModal(true);
     reset();
   };
 
@@ -353,6 +357,14 @@ export default function Contact() {
           </motion.div>
         </div>
       </section>
+
+      {/* Success Modal */}
+      <SuccessModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        title="Message Sent Successfully!"
+        message="Thank you for contacting us! Our team will get back to you within 24 hours. We appreciate your interest in HaulSafe Insurance."
+      />
     </div>
   );
 }
