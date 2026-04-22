@@ -30,29 +30,29 @@ const fadeInLeft = {
 };
 
 const timelineSteps = [
-  {
-    icon: <FileCheck className="w-7 h-7" />,
-    day: "1",
-    label: "Day 1",
-    title: "Share Your Details & We Get Started",
-    isHighlighted: false,
-    tasks: [
-      "You share business details",
-      "We assign your dedicated compliance expert",
-      "We file BOC-3 (active in 1-2 hours)",
-      "We file LLC documents",
-    ],
-  },
+
   {
     icon: <FileText className="w-7 h-7" />,
-    day: "2",
-    label: "Day 2",
+    day: "1",
+    label: "Day 1",
     title: "USDOT & MC Application Filed",
     isHighlighted: false,
     tasks: [
       "USDOT active within 48 hours",
       "We file MC application",
       "We submit insurance application",
+    ],
+  },  {
+    icon: <FileCheck className="w-7 h-7" />,
+    day: "2",
+    label: "Day 2",
+    title: "Share Your Details & We Get Started",
+    isHighlighted: false,
+    tasks: [
+      "You share business details",
+      "We assign your dedicated compliance expert",
+      "We file BOC-3 (active in 1-2 hours)",
+      // "We file LLC documents",
     ],
   },
   {
@@ -85,8 +85,8 @@ const timelineSteps = [
 
 export default function ServicesGridSection() {
   return (
-    <section className="py-20 px-4 bg-accent">
-      <div className="max-w-4xl mx-auto">
+    <section className="py-20 px-4 bg-accent border-4 border-black">
+      <div className="max-w-4xl mx-auto ">
         {/* Header */}
         <motion.div
           className="text-center mb-16"
@@ -95,7 +95,7 @@ export default function ServicesGridSection() {
           viewport={{ once: true, amount: 0.3 }}
           transition={fadeInUp.transition}
         >
-          <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-4">
+          <h2 id="#7days" className="text-3xl md:text-4xl font-extrabold text-primary mb-4">
             Get Fully Legal in 7 Business Days
           </h2>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">

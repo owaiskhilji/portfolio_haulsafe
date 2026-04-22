@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+
 const springTransition = {
   type: "spring",
   stiffness: 50,
@@ -79,7 +80,7 @@ const features = [
 
 export default function RoadmapSection() {
   return (
-    <section className="py-20 px-4 bg-primary">
+    <section id="solution" className="py-20 px-4 bg-primary border-4 border-black">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -183,11 +184,16 @@ export default function RoadmapSection() {
 
             {/* Secondary Button */}
             <motion.button
+
               className="inline-flex items-center gap-3 bg-transparent border-2 border-secondary text-secondary font-bold py-4 px-10 rounded-xl text-lg hover:bg-secondary/10 transition-all"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
             >
-              LEARN ABOUT 7-DAY PROCESS
+              <Link 
+              href="#7days"
+              >
+                LEARN ABOUT 7-DAY PROCESS
+              </Link>
             </motion.button>
           </div>
         </motion.div>

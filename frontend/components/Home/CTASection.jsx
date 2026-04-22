@@ -91,8 +91,8 @@ const earningScenarios = [
 
 export default function CTASection() {
   return (
-    <section className="py-20 px-4 bg-primary">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-20 px-4 bg-primary border-4 border-red-500">
+      <div className="max-w-6xl mx-auto ">
         {/* Header */}
         <motion.div
           className="text-center mb-16"

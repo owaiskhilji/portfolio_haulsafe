@@ -128,7 +128,7 @@ export default function Footer() {
             <h3 className="text-lg font-bold text-white mb-4">Contact Us</h3>
             <ul className="space-y-4">
               <li>
-                <a
+                <Link
                   href="mailto:haulsafeinsurance@gmail.com"
                   className="flex items-start gap-3 text-gray-300 hover:text-secondary transition-colors"
                 >
@@ -136,7 +136,7 @@ export default function Footer() {
                   <span className="text-sm">
                     haulsafeinsurance@gmail.com
                   </span>
-                </a>
+                </Link>
               </li>
               <li>
                 <div className="flex items-center gap-3 text-gray-300">

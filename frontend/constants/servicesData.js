@@ -1,144 +1,6 @@
 export const servicesData = [
-  // Insurance Services
-  {
-    slug: 'vehicle-insurance',
-    title: 'Vehicle Insurance',
-    category: 'Insurance',
-    description:
-      'Comprehensive physical damage coverage for your truck, trailer, and other commercial vehicles. Our vehicle insurance protects against collision, theft, vandalism, and weather-related damages, ensuring your fleet stays protected on the road.',
-    features: [
-      'Collision coverage for trucks and trailers',
-      'Comprehensive protection against theft and vandalism',
-      'Weather-related damage coverage',
-      'Flexible deductibles to fit your budget',
-      'Fast claims processing',
-    ],
-    iconName: 'Truck',
-  },
-  {
-    slug: 'truck-general-liability',
-    title: 'Truck General Liability',
-    category: 'Insurance',
-    description:
-      'Protect your trucking business from third-party claims for bodily injury, property damage, and advertising injury. This essential coverage shields your assets from lawsuits that could arise from everyday operations.',
-    features: [
-      'Third-party bodily injury protection',
-      'Property damage coverage',
-      'Legal defense costs included',
-      'Advertising injury protection',
-      'Coverage for loading and unloading operations',
-    ],
-    iconName: 'Shield',
-  },
-  {
-    slug: 'professional-liability',
-    title: 'Professional Liability',
-    category: 'Insurance',
-    description:
-      'Also known as errors and omissions (E&O) insurance, this coverage protects freight brokers, dispatchers, and logistics providers from claims of negligence, mistakes, or failure to perform professional duties.',
-    features: [
-      'Protection against negligence claims',
-      'Coverage for errors in dispatch and logistics',
-      'Legal defense and settlement costs',
-      'Cargo delay and missed delivery protection',
-      'Essential for brokers and freight agents',
-    ],
-    iconName: 'Briefcase',
-  },
-  {
-    slug: 'commercial-auto',
-    title: 'Commercial Auto',
-    category: 'Insurance',
-    description:
-      'Mandatory coverage for commercial vehicles operating on public roads. Our commercial auto policies meet FMCSA minimum requirements and can be customized to provide higher limits for maximum protection.',
-    features: [
-      'FMCSA minimum compliance coverage',
-      'Customizable liability limits',
-      'Bodily injury and property damage',
-      'Uninsured/underinsured motorist coverage',
-      'Medical payments coverage',
-    ],
-    iconName: 'Car',
-  },
 
-  // Authority & Compliance Services
-  {
-    slug: 'usdot-number',
-    title: 'USDOT Number',
-    category: 'Authority',
-    description:
-      'Your USDOT number is required for all commercial vehicles engaged in interstate commerce. We handle the entire application process, ensuring your number is active within 48 hours of submission.',
-    features: [
-      'Active in 48 hours',
-      'Complete application filing',
-      'Interstate commerce compliance',
-      'Required for all commercial vehicles',
-      'FMCSA registration included',
-    ],
-    iconName: 'Hash',
-  },
-  {
-    slug: 'mc-number',
-    title: 'MC Number',
-    category: 'Authority',
-    description:
-      'The Motor Carrier (MC) number authorizes you to transport goods across state lines for hire. We manage the entire application, from filing to activation, with your MC number typically active in 5-10 business days.',
-    features: [
-      'Active in 5-10 business days',
-      'Interstate operating authority',
-      'For-hire carrier authorization',
-      'Complete application management',
-      'Ongoing compliance support',
-    ],
-    iconName: 'FileText',
-  },
-  {
-    slug: 'boc3-filing',
-    title: 'BOC-3 Filing',
-    category: 'Authority',
-    description:
-      'The BOC-3 (Blanket of Coverage) designates process agents in every state where you operate. This mandatory filing is quick and essential for activating your MC authority. We process it in 1-2 hours.',
-    features: [
-      'Active in 1-2 hours',
-      'Process agent designation in all states',
-      'Required for MC authority activation',
-      'Nationwide coverage',
-      'Instant confirmation',
-    ],
-    iconName: 'FileCheck',
-  },
-  {
-    slug: 'ucr-registration',
-    title: 'UCR Registration',
-    category: 'Authority',
-    description:
-      'The Unified Carrier Registration (UCR) is an annual filing required for all interstate motor carriers, brokers, and freight forwarders. We handle your registration and annual renewals to keep you compliant.',
-    features: [
-      'Annual filing requirement',
-      'Interstate carrier compliance',
-      'Required for all motor carriers',
-      'Fee calculation based on fleet size',
-      'Renewal reminders and management',
-    ],
-    iconName: 'Calendar',
-  },
-  {
-    slug: 'mc-authority-letter',
-    title: 'MC Authority Letter',
-    category: 'Authority',
-    description:
-      'Your official MC Authority Letter serves as proof of your operating authority. We obtain and deliver this critical document for your records, contracts, and carrier verification purposes.',
-    features: [
-      'Official proof of authority',
-      'Required for broker contracts',
-      'Fast delivery',
-      'Digital and physical copies',
-      'Verification documentation',
-    ],
-    iconName: 'LetterText',
-  },
-
-  // Business Formation Services
+   // Business Formation Services
   {
     slug: 'llc-formation',
     title: 'LLC Formation',
@@ -244,21 +106,161 @@ export const servicesData = [
     ],
     iconName: 'PenTool',
   },
+  
+
+  // Authority & Compliance Services
+  {
+    slug: 'usdot-number',
+    title: 'USDOT Number',
+    category: 'Authority',
+    description:
+      'Your USDOT number is required for all commercial vehicles engaged in interstate commerce. We handle the entire application process, ensuring your number is active within 48 hours of submission.',
+    features: [
+      'Active in 48 hours',
+      'Complete application filing',
+      'Interstate commerce compliance',
+      'Required for all commercial vehicles',
+      'FMCSA registration included',
+    ],
+    iconName: 'Hash',
+  },
+  {
+    slug: 'mc-number',
+    title: 'MC Number',
+    category: 'Authority',
+    description:
+      'The Motor Carrier (MC) number authorizes you to transport goods across state lines for hire. We manage the entire application, from filing to activation, with your MC number typically active in 5-10 business days.',
+    features: [
+      'Active in 5-10 business days',
+      'Interstate operating authority',
+      'For-hire carrier authorization',
+      'Complete application management',
+      'Ongoing compliance support',
+    ],
+    iconName: 'FileText',
+  },
+  {
+    slug: 'boc3-filing',
+    title: 'BOC-3 Filing',
+    category: 'Authority',
+    description:
+      'The BOC-3 (Blanket of Coverage) designates process agents in every state where you operate. This mandatory filing is quick and essential for activating your MC authority. We process it in 1-2 hours.',
+    features: [
+      'Active in 1-2 hours',
+      'Process agent designation in all states',
+      'Required for MC authority activation',
+      'Nationwide coverage',
+      'Instant confirmation',
+    ],
+    iconName: 'FileCheck',
+  },
+  {
+    slug: 'ucr-registration',
+    title: 'UCR Registration',
+    category: 'Authority',
+    description:
+      'The Unified Carrier Registration (UCR) is an annual filing required for all interstate motor carriers, brokers, and freight forwarders. We handle your registration and annual renewals to keep you compliant.',
+    features: [
+      'Annual filing requirement',
+      'Interstate carrier compliance',
+      'Required for all motor carriers',
+      'Fee calculation based on fleet size',
+      'Renewal reminders and management',
+    ],
+    iconName: 'Calendar',
+  },
+  {
+    slug: 'mc-authority-letter',
+    title: 'MC Authority Letter',
+    category: 'Authority',
+    description:
+      'Your official MC Authority Letter serves as proof of your operating authority. We obtain and deliver this critical document for your records, contracts, and carrier verification purposes.',
+    features: [
+      'Official proof of authority',
+      'Required for broker contracts',
+      'Fast delivery',
+      'Digital and physical copies',
+      'Verification documentation',
+    ],
+    iconName: 'LetterText',
+  },
+
+ // Insurance Services
+  {
+    slug: 'vehicle-insurance',
+    title: 'Vehicle Insurance',
+    category: 'Insurance',
+    description:
+      'Comprehensive physical damage coverage for your truck, trailer, and other commercial vehicles. Our vehicle insurance protects against collision, theft, vandalism, and weather-related damages, ensuring your fleet stays protected on the road.',
+    features: [
+      'Collision coverage for trucks and trailers',
+      'Comprehensive protection against theft and vandalism',
+      'Weather-related damage coverage',
+      'Flexible deductibles to fit your budget',
+      'Fast claims processing',
+    ],
+    iconName: 'Truck',
+  },
+  {
+    slug: 'truck-general-liability',
+    title: 'Truck General Liability',
+    category: 'Insurance',
+    description:
+      'Protect your trucking business from third-party claims for bodily injury, property damage, and advertising injury. This essential coverage shields your assets from lawsuits that could arise from everyday operations.',
+    features: [
+      'Third-party bodily injury protection',
+      'Property damage coverage',
+      'Legal defense costs included',
+      'Advertising injury protection',
+      'Coverage for loading and unloading operations',
+    ],
+    iconName: 'Shield',
+  },
+  {
+    slug: 'professional-liability',
+    title: 'Professional Liability',
+    category: 'Insurance',
+    description:
+      'Also known as errors and omissions (E&O) insurance, this coverage protects freight brokers, dispatchers, and logistics providers from claims of negligence, mistakes, or failure to perform professional duties.',
+    features: [
+      'Protection against negligence claims',
+      'Coverage for errors in dispatch and logistics',
+      'Legal defense and settlement costs',
+      'Cargo delay and missed delivery protection',
+      'Essential for brokers and freight agents',
+    ],
+    iconName: 'Briefcase',
+  },
+  {
+    slug: 'commercial-auto',
+    title: 'Commercial Auto',
+    category: 'Insurance',
+    description:
+      'Mandatory coverage for commercial vehicles operating on public roads. Our commercial auto policies meet FMCSA minimum requirements and can be customized to provide higher limits for maximum protection.',
+    features: [
+      'FMCSA minimum compliance coverage',
+      'Customizable liability limits',
+      'Bodily injury and property damage',
+      'Uninsured/underinsured motorist coverage',
+      'Medical payments coverage',
+    ],
+    iconName: 'Car',
+  }
 
   // Tax Services
-  {
-    slug: 'tax-return',
-    title: 'Tax Return',
-    category: 'Tax',
-    description:
-      'Comprehensive tax preparation services for trucking businesses, including federal, state, and IFTA fuel tax returns. We ensure accurate filing and maximize your deductions while maintaining full compliance.',
-    features: [
-      'Federal tax return filing',
-      'State tax return preparation',
-      'IFTA quarterly fuel tax filing',
-      'Trucking-specific deductions',
-      'Year-round tax support',
-    ],
-    iconName: 'Receipt',
-  },
+  // {
+  //   slug: 'tax-return',
+  //   title: 'Tax Return',
+  //   category: 'Tax',
+  //   description:
+  //     'Comprehensive tax preparation services for trucking businesses, including federal, state, and IFTA fuel tax returns. We ensure accurate filing and maximize your deductions while maintaining full compliance.',
+  //   features: [
+  //     'Federal tax return filing',
+  //     'State tax return preparation',
+  //     'IFTA quarterly fuel tax filing',
+  //     'Trucking-specific deductions',
+  //     'Year-round tax support',
+  //   ],
+  //   iconName: 'Receipt',
+  // },
 ];

@@ -1,16 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Mail, Clock, Send } from "lucide-react";
-import { motion } from "framer-motion";
+import { Mail, Clock, Send, CheckCircle2, AlertCircle } from "lucide-react";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import emailjs from "@emailjs/browser";
 import SuccessModal from "@/components/Shared/SuccessModal";
 import { servicesData } from "@/constants/servicesData";
 
 const formSchema = z.object({
-  fullName: z.string().min(2, "Full Name is required"),
+  fullName: z.string().min(2, "Full Name must be at least 2 characters"),
   businessName: z.string().optional(),
   email: z.string().email("Invalid email address"),
   phone: z.string().min(10, "Phone number is required"),
@@ -44,6 +46,16 @@ const slideInRight = {
 
 export default function Contact() {
   const [showModal, setShowModal] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState("idle"); // idle, sending, success, error
+  const [statusMessage, setStatusMessage] = useState("");
+
+  useEffect(() => {
+    // Initialize EmailJS with Public Key
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    if (publicKey && publicKey !== "your_public_key_here") {
+      emailjs.init(publicKey);
+    }
+  }, []);
 
   const {
     register,
@@ -52,12 +64,64 @@ export default function Contact() {
     reset,
   } = useForm({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      fullName: "",
+      businessName: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
+    }
   });
 
   const onSubmit = async (data) => {
-    console.log("Form submitted:", data);
-    setShowModal(true);
-    reset();
+    setSubmitStatus("sending");
+    setStatusMessage("");
+
+    const templateParams = {
+      name: data.fullName,
+      email: data.email,
+      phone: data.phone,
+      business_name: data.businessName || "N/A",
+      subject: data.subject,
+      message: data.message,
+      timestamp: new Date().toLocaleString(),
+    };
+
+    try {
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+
+      if (!serviceId || !templateId || serviceId === "your_service_id_here") {
+        throw new Error("EmailJS configuration missing");
+      }
+
+      await emailjs.send(serviceId, templateId, templateParams);
+
+      setSubmitStatus("success");
+      setStatusMessage("Thank you! We'll contact you soon.");
+      setShowModal(true);
+      reset();
+
+      // Reset button state after 3 seconds
+      setTimeout(() => {
+        setSubmitStatus("idle");
+      }, 3000);
+
+      // Hide status message after 5 seconds
+      setTimeout(() => {
+        setStatusMessage("");
+      }, 5000);
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      setSubmitStatus("error");
+      setStatusMessage("Error sending message. Please try again.");
+      
+      // Reset button state after 3 seconds to allow retry
+      setTimeout(() => {
+        setSubmitStatus("idle");
+      }, 3000);
+    }
   };
 
   const contactInfo = [
@@ -88,7 +152,7 @@ export default function Contact() {
     <div className="min-h-screen">
       {/* Header */}
       <motion.section
-        className="bg-primary py-20 px-4"
+        className="bg-[#063B29] py-20 px-4"
         initial={fadeInUp.initial}
         animate={fadeInUp.animate}
         transition={fadeInUp.transition}
@@ -140,12 +204,12 @@ export default function Contact() {
                       {item.title}
                     </h3>
                     {item.link ? (
-                      <a
+                      <Link
                         href={item.link}
                         className="text-gray-700 hover:text-[#D4AF37] transition-colors"
                       >
                         {item.details}
-                      </a>
+                      </Link>
                     ) : (
                       <p className="text-gray-700">{item.details}</p>
                     )}
@@ -156,7 +220,7 @@ export default function Contact() {
 
             {/* Additional Info */}
             <motion.div
-              className="mt-12 p-6 bg-accent rounded-xl border border-secondary/20"
+              className="mt-12 p-6 bg-[#FDFCF0] rounded-xl border border-[#D4AF37]/20"
               whileHover={{ scale: 1.02 }}
               transition={springTransition}
             >
@@ -186,21 +250,49 @@ export default function Contact() {
             initial={slideInRight.initial}
             animate={slideInRight.animate}
             transition={slideInRight.transition}
-            whileHover={{ scale: 1.02 }}
           >
             <h2 className="text-2xl font-bold text-[#063B29] mb-6">
               Send Us a Message
             </h2>
 
+            {/* Status Messages */}
+            <AnimatePresence>
+              {statusMessage && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
+                    submitStatus === "success"
+                      ? "bg-green-100 text-green-800 border border-green-200"
+                      : "bg-red-100 text-red-800 border border-red-200"
+                  }`}
+                >
+                  {submitStatus === "success" ? (
+                    <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                  ) : (
+                    <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                  )}
+                  <p className="text-sm font-medium">{statusMessage}</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
               {/* Full Name */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label 
+                  htmlFor="fullName"
+                  className="block text-sm font-semibold text-gray-700 mb-2"
+                >
                   Full Name <span className="text-red-500">*</span>
                 </label>
                 <input
+                  id="fullName"
                   type="text"
                   {...register("fullName")}
+                  aria-invalid={errors.fullName ? "true" : "false"}
+                  aria-describedby={errors.fullName ? "fullName-error" : undefined}
                   className={`w-full px-4 py-3 rounded-lg border ${
                     errors.fullName
                       ? "border-red-500"
@@ -209,7 +301,7 @@ export default function Contact() {
                   placeholder="John Doe"
                 />
                 {errors.fullName && (
-                  <p className="text-red-500 text-sm mt-1">
+                  <p id="fullName-error" className="text-red-500 text-sm mt-1">
                     {errors.fullName.message}
                   </p>
                 )}
@@ -217,10 +309,14 @@ export default function Contact() {
 
               {/* Business Name */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label 
+                  htmlFor="businessName"
+                  className="block text-sm font-semibold text-gray-700 mb-2"
+                >
                   Business Name
                 </label>
                 <input
+                  id="businessName"
                   type="text"
                   {...register("businessName")}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#D4AF37] focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/20 transition-all"
@@ -232,12 +328,18 @@ export default function Contact() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {/* Email */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label 
+                    htmlFor="email"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
                     Email Address <span className="text-red-500">*</span>
                   </label>
                   <input
+                    id="email"
                     type="email"
                     {...register("email")}
+                    aria-invalid={errors.email ? "true" : "false"}
+                    aria-describedby={errors.email ? "email-error" : undefined}
                     className={`w-full px-4 py-3 rounded-lg border ${
                       errors.email
                         ? "border-red-500"
@@ -246,7 +348,7 @@ export default function Contact() {
                     placeholder="john@example.com"
                   />
                   {errors.email && (
-                    <p className="text-red-500 text-sm mt-1">
+                    <p id="email-error" className="text-red-500 text-sm mt-1">
                       {errors.email.message}
                     </p>
                   )}
@@ -254,12 +356,18 @@ export default function Contact() {
 
                 {/* Phone */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label 
+                    htmlFor="phone"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
                     Phone Number <span className="text-red-500">*</span>
                   </label>
                   <input
+                    id="phone"
                     type="tel"
                     {...register("phone")}
+                    aria-invalid={errors.phone ? "true" : "false"}
+                    aria-describedby={errors.phone ? "phone-error" : undefined}
                     className={`w-full px-4 py-3 rounded-lg border ${
                       errors.phone
                         ? "border-red-500"
@@ -268,7 +376,7 @@ export default function Contact() {
                     placeholder="+1 (555) 000-0000"
                   />
                   {errors.phone && (
-                    <p className="text-red-500 text-sm mt-1">
+                    <p id="phone-error" className="text-red-500 text-sm mt-1">
                       {errors.phone.message}
                     </p>
                   )}
@@ -277,16 +385,22 @@ export default function Contact() {
 
               {/* Subject */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label 
+                  htmlFor="subject"
+                  className="block text-sm font-semibold text-gray-700 mb-2"
+                >
                   Subject <span className="text-red-500">*</span>
                 </label>
                 <select
+                  id="subject"
                   {...register("subject")}
+                  aria-invalid={errors.subject ? "true" : "false"}
+                  aria-describedby={errors.subject ? "subject-error" : undefined}
                   className={`w-full px-4 py-3 rounded-lg border ${
                     errors.subject
                       ? "border-red-500"
                       : "border-gray-300 focus:border-[#D4AF37]"
-                  } focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/20 transition-all`}
+                  } focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/20 transition-all bg-white`}
                 >
                   {subjects.map((option) => (
                     <option key={option.value} value={option.value}>
@@ -295,7 +409,7 @@ export default function Contact() {
                   ))}
                 </select>
                 {errors.subject && (
-                  <p className="text-red-500 text-sm mt-1">
+                  <p id="subject-error" className="text-red-500 text-sm mt-1">
                     {errors.subject.message}
                   </p>
                 )}
@@ -303,11 +417,17 @@ export default function Contact() {
 
               {/* Message */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label 
+                  htmlFor="message"
+                  className="block text-sm font-semibold text-gray-700 mb-2"
+                >
                   Message <span className="text-red-500">*</span>
                 </label>
                 <textarea
+                  id="message"
                   {...register("message")}
+                  aria-invalid={errors.message ? "true" : "false"}
+                  aria-describedby={errors.message ? "message-error" : undefined}
                   rows="5"
                   className={`w-full px-4 py-3 rounded-lg border ${
                     errors.message
@@ -317,7 +437,7 @@ export default function Contact() {
                   placeholder="Tell us how we can help you..."
                 />
                 {errors.message && (
-                  <p className="text-red-500 text-sm mt-1">
+                  <p id="message-error" className="text-red-500 text-sm mt-1">
                     {errors.message.message}
                   </p>
                 )}
@@ -326,13 +446,28 @@ export default function Contact() {
               {/* Submit Button */}
               <motion.button
                 type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-secondary text-primary font-bold py-4 px-8 rounded-lg hover:bg-opacity-90 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                disabled={submitStatus === "sending" || submitStatus === "success"}
+                className={`w-full font-bold py-4 px-8 rounded-lg transition-all flex items-center justify-center gap-2 ${
+                  submitStatus === "sending"
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : submitStatus === "success"
+                    ? "bg-green-500 text-white"
+                    : submitStatus === "error"
+                    ? "bg-red-500 text-white"
+                    : "bg-[#D4AF37] text-[#063B29] hover:bg-opacity-90"
+                }`}
+                whileHover={submitStatus === "idle" ? { scale: 1.02 } : {}}
+                whileTap={submitStatus === "idle" ? { scale: 0.98 } : {}}
               >
-                {isSubmitting ? (
+                {submitStatus === "sending" ? (
                   "SENDING..."
+                ) : submitStatus === "success" ? (
+                  <>
+                    <CheckCircle2 className="w-5 h-5" />
+                    SENT SUCCESSFULLY
+                  </>
+                ) : submitStatus === "error" ? (
+                  "TRY AGAIN"
                 ) : (
                   <>
                     <Send className="w-5 h-5" />

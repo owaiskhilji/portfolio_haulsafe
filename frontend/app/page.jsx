@@ -11,11 +11,11 @@ import CTASection from "@/components/Home/CTASection";
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <HeroSection />
+       <HeroSection />
       <PaymentPlanSection />
       <ProblemSection />
       <RoadmapSection />
-      <VehicleInsuranceSection />
+      <VehicleInsuranceSection /> 
       <ServicesGridSection />
       <CTASection />
     </div>

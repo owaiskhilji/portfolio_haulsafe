@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import {
   DollarSign,
   Clock,
@@ -77,7 +78,7 @@ const problems = [
 
 export default function ProblemSection() {
   return (
-    <section className="py-20 px-4 bg-accent">
+    <section className="py-20 px-4 bg-accent border-4 border-white">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -145,13 +146,13 @@ export default function ProblemSection() {
             whileHover={{ y: 5 }}
             transition={springTransition}
           >
-            <a
+            <Link
               href="#solution"
               className="inline-flex items-center gap-3 bg-secondary text-primary font-bold py-4 px-10 rounded-xl text-lg shadow-xl hover:bg-opacity-90 transition-all"
             >
               DISCOVER OUR SOLUTION
               <ArrowDown className="w-5 h-5" />
-            </a>
+            </Link>
           </motion.div>
         </motion.div>
       </div>

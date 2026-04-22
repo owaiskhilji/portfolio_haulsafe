@@ -35,7 +35,7 @@ const StaggeredText = ({ text, colorClass }) => {
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#063B29]">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#063B29] border-4 border-white">
       {/* Desktop: Split Layout - Text 40%, Image 60% */}
       <div className="hidden lg:flex w-full">
         {/* Left: Text Content (40%) */}

@@ -550,12 +550,12 @@ export default function Privacy() {
                     Email
                   </span>
                 </div>
-                <a
+                <Link
                   href="mailto:haulsafeinsurance@gmail.com"
                   className="text-primary font-bold text-lg hover:text-primary/80 transition-colors break-all"
                 >
                   haulsafeinsurance@gmail.com
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -569,85 +569,6 @@ export default function Privacy() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-primary text-white py-12 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            {/* Company */}
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <Shield className="w-8 h-8 text-secondary" />
-                <div>
-                  <h3 className="font-bold text-lg">HaulSafe Insurance</h3>
-                  <p className="text-xs text-gray-400">
-                    Premium Trucking Insurance & FMCSA Compliance
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Quick Links */}
-            <div>
-              <h4 className="font-bold text-secondary mb-4">Quick Links</h4>
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="/"
-                    className="text-gray-300 hover:text-secondary transition-colors text-sm flex items-center gap-2"
-                  >
-                    <Home className="w-3 h-3" />
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/quote"
-                    className="text-gray-300 hover:text-secondary transition-colors text-sm"
-                  >
-                    Get a Quote
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contact"
-                    className="text-gray-300 hover:text-secondary transition-colors text-sm"
-                  >
-                    Contact Us
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h4 className="font-bold text-secondary mb-4">Contact</h4>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li className="flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-secondary" />
-                  <a
-                    href="mailto:haulsafeinsurance@gmail.com"
-                    className="hover:text-secondary transition-colors"
-                  >
-                    haulsafeinsurance@gmail.com
-                  </a>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-secondary" />
-                  <span>Mon-Fri, 9AM-6PM EST</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Bottom Bar */}
-          <div className="pt-6 border-t border-white/10 text-center">
-            <p className="text-sm text-gray-400">
-              © {new Date().getFullYear()} HaulSafe Insurance Services. All
-              rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
