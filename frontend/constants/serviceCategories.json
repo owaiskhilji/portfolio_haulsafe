@@ -1,0 +1,35 @@
+{
+  "categories": [
+    {
+      "title": "Business Setup",
+      "services": [
+        "LLC Formation",
+        "EIN Tax ID",
+        "BOI Report",
+        "Annual Report Filing",
+        "LLC Amendment",
+        "Operating Agreement",
+        "DBA Filing"
+      ]
+    },
+    {
+      "title": "Authority",
+      "services": [
+        "USDOT Number",
+        "MC Number",
+        "BOC-3 Filing",
+        "UCR Registration",
+        "MC Authority Letter"
+      ]
+    },
+    {
+      "title": "Insurance",
+      "services": [
+        "Vehicle Insurance",
+        "Truck General Liability",
+        "Professional Liability",
+        "Commercial Auto"
+      ]
+    }
+  ]
+}
