@@ -46,22 +46,15 @@ const referralSteps = [
       "Get your unique referral link after submitting free quote request",
   },
   {
-    icon: <User className="w-7 h-7" />,
-    step: "2",
-    title: "They Sign Up",
-    description:
-      "Your friend signs up and gets their insurance with HaulSafe",
-  },
-  {
     icon: <DollarSign className="w-7 h-7" />,
-    step: "3",
+    step: "2",
     title: "You Earn",
     description:
       "You earn 5% of their monthly premium every month",
   },
   {
     icon: <Zap className="w-7 h-7" />,
-    step: "4",
+    step: "3",
     title: "Lifetime Earnings",
     description:
       "As long as they stay with us, you keep earning. No limits. No expiration.",

@@ -158,10 +158,10 @@ export default function PaymentPlanSection() {
                     Referral Discount
                   </p>
                   <p className="text-sm text-gray-600 mt-1">
-                    Existing client = <span className="font-bold">0% fee</span>
+                    Existing client = <span className="font-bold">10% </span>
                   </p>
                   <p className="text-sm text-gray-600">
-                    Non-client = <span className="font-bold">2.5% fee</span>
+                    Non-client = <span className="font-bold">5%</span>
                   </p>
                 </div>
               </li>

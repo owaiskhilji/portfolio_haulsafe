@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, Clock, DollarSign, ArrowRight } from 'lucide-react';
+import { CheckCircle2, Clock, DollarSign, ArrowRight, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import * as LucideIcons from 'lucide-react';
@@ -28,6 +28,44 @@ export default function ServicePageClient({ service }) {
     Authority: 'bg-purple-500',
     Business: 'bg-green-500',
     Tax: 'bg-orange-500',
+  };
+
+  const getCardContent = (category, slug) => {
+    if (category === 'Business') {
+      const businessMap = {
+        'llc-formation': "Start your journey on the right legal footing. Build a solid foundation for your trucking legacy today.",
+        'ein-tax-id': "Unlock your business banking and hiring power. Get your official IRS tax ID processed with lightning speed.",
+        'boi-report': "Stay ahead of federal regulations and avoid heavy fines. Secure your business transparency compliance now.",
+        'annual-report-filing': "Never miss a deadline or lose your good standing. Let us handle the paperwork while you focus on the road.",
+        'llc-amendment': "Business evolving? Keep your legal records accurate and up-to-date with seamless state-level amendments.",
+        'operating-agreement': "Protect your assets and define your rules. Get a custom-drafted agreement that secures your business future.",
+        'dba-filing': "Expand your brand and trade with confidence. Register your business name and start operating under your new identity.",
+      };
+      return businessMap[slug] || `Launch your trucking company today. Get a fast-track setup for ${service.title} with our expert team.`;
+    }
+
+    if (category === 'Authority') {
+      const authorityMap = {
+        'usdot-number': "Get your USDOT number active and ready. Don't let paperwork stall your engine—we handle the FMCSA for you.",
+        'mc-number': "Ready to go for-hire? Secure your interstate operating authority and start booking high-paying loads.",
+        'boc3-filing': "Instant process agent designation in all 50 states. We file your BOC-3 in minutes so your authority can go live.",
+        'ucr-registration': "Stay compliant and avoid roadside fines. We manage your annual Unified Carrier Registration with zero hassle.",
+        'mc-authority-letter': "Get the official proof of your power. Secure your FMCSA authority letter and start signing broker contracts today.",
+      };
+      return authorityMap[slug] || `Secure your operating authority today. Get expert assistance with ${service.title} for a smooth activation.`;
+    }
+
+    if (category === 'Insurance') {
+      const insuranceMap = {
+        'vehicle-insurance': "Protect your heavy-duty assets with the industry's best. Secure 50% upfront coverage and keep your fleet moving with confidence.",
+        'truck-general-liability': "Shield your business from the unexpected. Get robust liability protection for only 50% upfront and drive with total peace of mind.",
+        'professional-liability': "Expert protection for logistics professionals. Safeguard your career against errors with our flexible 50% upfront payment plan.",
+        'commercial-auto': "Stay FMCSA compliant and fully protected on the open road. Get custom insurance solutions for just 50% upfront today.",
+      };
+      return insuranceMap[slug] || `Get a personalized quote for ${service.title} with our 50% upfront payment plan.`;
+    }
+
+    return `Get a personalized quote for ${service.title} with our 50% upfront payment plan.`;
   };
 
   return (
@@ -131,7 +169,7 @@ export default function ServicePageClient({ service }) {
               </h3>
 
               <p className="text-gray-600 mb-6">
-                Get a personalized quote for {service.title} with our 50% upfront payment plan.
+                {getCardContent(service.category, service.slug)}
               </p>
 
               <Link
@@ -168,12 +206,22 @@ export default function ServicePageClient({ service }) {
 
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <DollarSign className="w-6 h-6 text-secondary" />
+                    {service.category === 'Business' || service.category === 'Authority' ? (
+                      <CheckCircle2 className="w-6 h-6 text-secondary" />
+                    ) : (
+                      <DollarSign className="w-6 h-6 text-secondary" />
+                    )}
                   </div>
                   <div>
-                    <h4 className="font-bold text-lg">50% Upfront</h4>
+                    <h4 className="font-bold text-lg">
+                      {service.category === 'Business' ? 'Expert Compliance' : 
+                       service.category === 'Authority' ? 'Fast Activation' : 
+                       '50% Upfront'}
+                    </h4>
                     <p className="text-gray-300 text-sm">
-                      Pay only half upfront with flexible payment plans
+                      {service.category === 'Business' ? '100% accurate filings ensuring your business stays in good standing' :
+                       service.category === 'Authority' ? 'Rapid processing to get your operating authority active as quickly as possible' :
+                       'Pay only half upfront with flexible payment plans'}
                     </p>
                   </div>
                 </div>

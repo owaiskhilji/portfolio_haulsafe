@@ -120,6 +120,12 @@ export default function Navbar() {
               </div>
 
               <Link
+                href="/referral"
+                className="text-primary font-semibold hover:text-secondary transition-colors"
+              >
+                Referral
+              </Link>
+              <Link
                 href="/contact"
                 className="text-primary font-semibold hover:text-secondary transition-colors"
               >
@@ -207,6 +213,13 @@ export default function Navbar() {
                 )}
               </div>
 
+              <Link
+                href="/referral"
+                className="block text-primary font-semibold hover:text-secondary transition-colors py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Referral
+              </Link>
               <Link
                 href="/contact"
                 className="block text-primary font-semibold hover:text-secondary transition-colors py-2"

@@ -40,7 +40,6 @@ const timelineSteps = [
     tasks: [
       "USDOT active within 48 hours",
       "We file MC application",
-      "We submit insurance application",
     ],
   },  {
     icon: <FileCheck className="w-7 h-7" />,
@@ -52,7 +51,6 @@ const timelineSteps = [
       "You share business details",
       "We assign your dedicated compliance expert",
       "We file BOC-3 (active in 1-2 hours)",
-      // "We file LLC documents",
     ],
   },
   {
@@ -62,7 +60,8 @@ const timelineSteps = [
     title: "Insurance Approved & Policy Active",
     isHighlighted: true,
     tasks: [
-      "Insurance approved by GEICO/Progressive",
+      "Insurance approved by GEICO, Progressive, and 10+ other",
+      "We submit insurance application",
       "You pay 50% (rest over 6 months)",
       "Your policy becomes ACTIVE",
       "Certificate issued to you",

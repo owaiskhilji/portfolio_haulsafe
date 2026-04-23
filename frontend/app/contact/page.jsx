@@ -134,7 +134,7 @@ export default function Contact() {
     {
       icon: <Clock className="w-6 h-6" />,
       title: "Business Hours",
-      details: "Mon-Fri, 9AM-6PM EST",
+      details: "Mon-Fri: 9AM-6PM, Sat-Sun: 9AM-3PM EST",
       link: null,
     },
   ];
@@ -228,10 +228,6 @@ export default function Contact() {
                 Why Contact HaulSafe?
               </h3>
               <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start gap-2">
-                  <span className="text-[#D4AF37] mt-1">✓</span>
-                  <span>50% upfront payment facility</span>
-                </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#D4AF37] mt-1">✓</span>
                   <span>7-day complete legal setup</span>

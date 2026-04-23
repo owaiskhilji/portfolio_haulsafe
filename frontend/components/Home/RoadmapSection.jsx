@@ -29,6 +29,18 @@ const fadeInUp = {
 
 const features = [
   {
+    icon: <FileText className="w-7 h-7" />,
+    title: "Free LLC Formation quote",
+    description:
+      "Name check, Articles of Organization, EIN from IRS, operating agreement. All free with your insurance.",
+  },
+    {
+    icon: <Shield className="w-7 h-7" />,
+    title: " USDOT & MC Filing",
+    description:
+      "USDOT & MC Filing active within 48 hours after insurance is authorized for property. MC active in 5-10 business days. BOC-3 active in 1-2 hours",
+  },
+  {
     icon: <CreditCard className="w-7 h-7" />,
     title: "50% Payment + EMI",
     description:
@@ -46,18 +58,7 @@ const features = [
     description:
       "Complete checklist once. No back and forth. No asking for same document 5 times. You provide it once. We handle the rest.",
   },
-  {
-    icon: <FileText className="w-7 h-7" />,
-    title: "Free LLC Formation",
-    description:
-      "Name check, Articles of Organization, EIN from IRS, operating agreement. All free with your insurance.",
-  },
-  {
-    icon: <Shield className="w-7 h-7" />,
-    title: "Free USDOT & MC Filing",
-    description:
-      "USDOT active within 48 hours. MC active in 5-10 business days. BOC-3 active in 1-2 hours. All free.",
-  },
+  
   {
     icon: <User className="w-7 h-7" />,
     title: "Dedicated Compliance Expert",
