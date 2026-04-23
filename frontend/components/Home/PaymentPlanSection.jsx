@@ -26,7 +26,7 @@ const fadeInUp = {
 
 export default function PaymentPlanSection() {
   return (
-    <section className="py-20 px-4 bg-accent border-4 border-black">
+    <section className="py-20 px-4 bg-accent ">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -36,7 +36,7 @@ export default function PaymentPlanSection() {
           viewport={{ once: true, amount: 0.3 }}
           transition={fadeInUp.transition}
         >
-          <h2 className="text-4xl md:text-5xl font-extrabold text-primary mb-4">
+          <h2 id="arrow" className="text-4xl md:text-5xl font-extrabold text-primary mb-4">
             Our Payment Plan — 50% Upfront, Rest Later
           </h2>
           <p className="text-xl text-gray-700 max-w-2xl mx-auto font-medium">
@@ -205,7 +205,7 @@ export default function PaymentPlanSection() {
         >
           <Link
             href="/quote"
-            className="inline-flex items-center gap-3 bg-secondary text-primary font-black py-5 px-12 rounded-xl text-xl shadow-2xl hover:scale-105 transition-transform active:scale-95"
+              className="inline-flex items-center gap-3 bg-secondary text-primary font-bold py-4 px-10 rounded-xl text-lg shadow-xl hover:bg-opacity-90 transition-all"
           >
             GET YOUR FREE QUOTE NOW
             <ChevronRight className="w-6 h-6" />

@@ -29,7 +29,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Col 1: About */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-3 mb-4">
+            {/* <Link href="/" className="flex items-center gap-3 mb-4">
               <img
                 src="/logo.png"
                 alt="HaulSafe Logo"
@@ -43,7 +43,7 @@ export default function Footer() {
                   Protection You Can Trust
                 </span>
               </div>
-            </Link>
+            </Link> */}
             <p className="text-gray-300 text-sm leading-relaxed">
               Premium trucking insurance and FMCSA compliance services with
               50% upfront payment and 7-day complete setup.
@@ -86,14 +86,6 @@ export default function Footer() {
                   className="text-gray-300 hover:text-secondary transition-colors text-sm"
                 >
                   Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/referral"
-                  className="text-gray-300 hover:text-secondary transition-colors text-sm"
-                >
-                  Referral Program
                 </Link>
               </li>
               <li>

@@ -78,7 +78,7 @@ const problems = [
 
 export default function ProblemSection() {
   return (
-    <section className="py-20 px-4 bg-accent border-4 border-white">
+    <section className="py-20 px-4 bg-accent ">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div

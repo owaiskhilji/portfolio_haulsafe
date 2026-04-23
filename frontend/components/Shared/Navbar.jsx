@@ -37,20 +37,12 @@ export default function Navbar() {
       {/* Top Bar - Shows phone on mobile, full info on desktop */}
       <div className="bg-primary h-10">
         <div className="max-w-7xl mx-auto px-4 h-full">
-          <div className="flex items-center justify-between h-full text-white text-xs">
+          <div className="flex items-center justify-center md:justify-end h-full text-white text-xs">
             <div className="flex items-center gap-4">
-              {/* Mobile: Email icon only */}
+              {/* Mobile & Desktop: Email */}
               <Link
                 href="mailto:haulsafeinsurance@gmail.com"
-                className="md:hidden flex items-center justify-center w-8 h-8 hover:text-secondary transition-colors"
-              >
-                <Mail className="w-4 h-4" />
-              </Link>
-
-              {/* Desktop: Email only */}
-              <Link
-                href="mailto:haulsafeinsurance@gmail.com"
-                className="flex items-center gap-2 hover:text-secondary transition-colors"
+                className="flex items-centert gap-2 hover:text-secondary transition-colors"
               >
                 <Mail className="w-3 h-3" />
                 <span>haulsafeinsurance@gmail.com</span>

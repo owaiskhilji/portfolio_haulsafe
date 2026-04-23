@@ -85,7 +85,7 @@ const timelineSteps = [
 
 export default function ServicesGridSection() {
   return (
-    <section className="py-20 px-4 bg-accent border-4 border-black">
+    <section className="py-20 px-4 bg-accent">
       <div className="max-w-4xl mx-auto ">
         {/* Header */}
         <motion.div
@@ -95,7 +95,7 @@ export default function ServicesGridSection() {
           viewport={{ once: true, amount: 0.3 }}
           transition={fadeInUp.transition}
         >
-          <h2 id="#7days" className="text-3xl md:text-4xl font-extrabold text-primary mb-4">
+          <h2 id="7days" className="text-3xl md:text-4xl font-extrabold text-primary mb-4">
             Get Fully Legal in 7 Business Days
           </h2>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
@@ -233,14 +233,14 @@ export default function ServicesGridSection() {
             </motion.div>
 
             {/* Secondary Button */}
-            <motion.button
+            {/* <motion.button
               className="inline-flex items-center gap-3 bg-transparent border-2 border-primary text-primary font-bold py-4 px-10 rounded-xl text-lg hover:bg-primary/5 transition-all"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
             >
               <MessageSquare className="w-5 h-5" />
               TALK TO AN EXPERT
-            </motion.button>
+            </motion.button> */}
           </div>
         </motion.div>
       </div>

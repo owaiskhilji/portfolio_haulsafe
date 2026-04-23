@@ -80,7 +80,7 @@ const features = [
 
 export default function RoadmapSection() {
   return (
-    <section id="solution" className="py-20 px-4 bg-primary border-4 border-black">
+    <section id="solution" className="py-20 px-4 bg-primary">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div

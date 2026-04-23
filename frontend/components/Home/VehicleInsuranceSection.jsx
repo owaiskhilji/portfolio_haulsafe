@@ -132,7 +132,7 @@ const freeFeatures = [
 
 export default function VehicleInsuranceSection() {
   return (
-    <section className="py-20 px-4 bg-accent border-4 border-black">
+    <section className="py-20 px-4 bg-accent">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -338,20 +338,20 @@ export default function VehicleInsuranceSection() {
             {/* Primary Button */}
             <Link
               href="/quote"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-secondary text-primary font-black py-5 px-12 rounded-2xl text-xl shadow-xl hover:scale-105 transition-all active:scale-95"
+              className="inline-flex items-center gap-3 bg-secondary text-primary font-bold py-4 px-10 rounded-xl text-lg shadow-xl hover:bg-opacity-90 transition-all"
             >
               TALK TO AN EXPERT
               <MessageSquare className="w-6 h-6" />
             </Link>
 
             {/* Secondary Button */}
-            <Link
+            {/* <Link
               href="/quote"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white border-4 border-primary text-primary font-black py-4.5 px-12 rounded-2xl text-xl hover:bg-primary hover:text-white transition-all active:scale-95"
             >
               GET FREE QUOTE
               <ChevronRight className="w-6 h-6" />
-            </Link>
+            </Link> */}
           </div>
         </motion.div>
       </div>
