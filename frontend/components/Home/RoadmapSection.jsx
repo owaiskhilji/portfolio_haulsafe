@@ -30,13 +30,13 @@ const fadeInUp = {
 const features = [
   {
     icon: <FileText className="w-7 h-7" />,
-    title: "Free LLC Formation quote",
+    title: "Get a Free Quote for LLC Formation",
     description:
-      "Name check, Articles of Organization, EIN from IRS, operating agreement. All free with your insurance.",
+      "Name check, Articles of Organization, EIN from IRS, operating agreement.",
   },
     {
     icon: <Shield className="w-7 h-7" />,
-    title: " USDOT & MC Filing",
+    title: "USDOT & MC Filing",
     description:
       "USDOT & MC Filing active within 48 hours after insurance is authorized for property. MC active in 5-10 business days. BOC-3 active in 1-2 hours",
   },
@@ -67,7 +67,7 @@ const features = [
   },
   {
     icon: <Bell className="w-7 h-7" />,
-    title: "Lifetime Renewal Reminders",
+    title: "Renewal Reminders",
     description:
       "Never miss a deadline again. Annual report, UCR, insurance, MC authority - we track everything and remind you.",
   },

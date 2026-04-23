@@ -118,7 +118,22 @@ export default function FormStep2({
           >
             <div className="p-6 bg-primary/5 rounded-2xl border border-primary/10 space-y-6">
               <h3 className="text-sm font-bold text-primary uppercase tracking-wider">USDOT & Vehicle Details</h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-bold text-primary mb-2">USDOT Number</label>
+                  <input type="text" {...register("usdotNumber")} className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-secondary focus:outline-none transition-all" placeholder="Enter USDOT Number" />
+                </div> 
+                
+                <div>
+                  <label className="block text-sm font-bold text-primary mb-2">VIN Number</label>
+                  <input type="text" {...register("vinNumber")} className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-secondary focus:outline-none transition-all" placeholder="Enter VIN" />
+                </div>
+                
+              </div>
               
+
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                   <label className="block text-sm font-bold text-primary mb-2">Make</label>
@@ -134,16 +149,6 @@ export default function FormStep2({
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-bold text-primary mb-2">VIN Number</label>
-                  <input type="text" {...register("vinNumber")} className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-secondary focus:outline-none transition-all" placeholder="Enter VIN" />
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-primary mb-2">USDOT Number</label>
-                  <input type="text" {...register("usdotNumber")} className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-secondary focus:outline-none transition-all" placeholder="Enter USDOT Number" />
-                </div>
-              </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>

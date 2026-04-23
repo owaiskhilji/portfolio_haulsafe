@@ -128,6 +128,11 @@ const freeFeatures = [
   "Renewal Management (lifetime reminders)",
   "Dedicated Compliance Expert",
   "No-Fine Guarantee",
+  "IRP plates",
+  "IFTA (Fuel tax sticker)",
+  "FF (Freight Forwarder)",
+  "UCR",
+  "More+"
 ];
 
 export default function VehicleInsuranceSection() {
@@ -294,7 +299,7 @@ export default function VehicleInsuranceSection() {
           
           <div className="max-w-4xl mx-auto relative z-10">
             <h3 className="text-3xl lg:text-4xl font-black text-primary mb-12 text-center">
-              Extra Services
+              Other Services
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -344,14 +349,6 @@ export default function VehicleInsuranceSection() {
               <MessageSquare className="w-6 h-6" />
             </Link>
 
-            {/* Secondary Button */}
-            {/* <Link
-              href="/quote"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white border-4 border-primary text-primary font-black py-4.5 px-12 rounded-2xl text-xl hover:bg-primary hover:text-white transition-all active:scale-95"
-            >
-              GET FREE QUOTE
-              <ChevronRight className="w-6 h-6" />
-            </Link> */}
           </div>
         </motion.div>
       </div>
